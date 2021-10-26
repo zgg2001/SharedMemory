@@ -28,7 +28,7 @@ int main()
     perror("shmat");
     printf("pid address : %p\n", pid);
    
-    //更改内存中的内容
+    //操作 更改内存中的内容
     printf("before:%d\n", *pid);
     *pid = getpid();
     printf("after:%d\n", *pid);
