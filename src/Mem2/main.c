@@ -28,9 +28,10 @@ int hangout(int semid);
 int main()
 {
     int semid;
+    key_t key = 0x2333;//key值
 
     //初始化
-    if(init(0x2333, &semid) == 0)
+    if(init(key, &semid) == 0)
     {
         return -1;
     }
