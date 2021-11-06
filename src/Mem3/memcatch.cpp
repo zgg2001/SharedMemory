@@ -20,11 +20,11 @@ int main()
     //相关对象
     semaphore *sem = new semaphore((key_t)0x1111);
     shared_memory *mem = new shared_memory((key_t)0x2222);
-    int* list;
+    long long* list;
     //初始化信号灯
     sem->init();
     //获取内存
-    mem->getmem(sizeof(int) * 2); //max 和 min
+    mem->getmem(sizeof(long long) * 2); //max 和 min
     //此内存是否被初始化
     bool init = false;
 
@@ -33,7 +33,7 @@ int main()
         //等待信号灯挂出
         sem->wait();
         //操作
-        list = (int*)mem->getptr();
+        list = (long long*)mem->getptr();
         
         //获取当前消耗内存
         int error = sysinfo(&s_info);
