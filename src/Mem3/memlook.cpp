@@ -17,19 +17,19 @@ int main()
     //相关对象
     semaphore *sem = new semaphore((key_t)0x1111);
     shared_memory *mem = new shared_memory((key_t)0x2222);
-    int* list;
+    long long* list;
     //初始化信号灯
     sem->init();
     //获取内存
-    mem->getmem(sizeof(int) * 2); //max 和 min
+    mem->getmem(sizeof(long long) * 2); //max 和 min
 
     //等待信号灯挂出
     sem->wait();
     //操作
-    list = (int*)mem->getptr();
+    list = (long long*)mem->getptr();
 
-    printf("最大可用内存：%d bytes / %lf MB\n", list[0], (double)list[0]/1024/1024);
-    printf("最小可用内存：%d bytes / %lf MB\n", list[1], (double)list[1]/1024/1024);
+    printf("最大可用内存：%lld bytes / %lf MB\n", list[0], (double)list[0]/1024/1024);
+    printf("最小可用内存：%lld bytes / %lf MB\n", list[1], (double)list[1]/1024/1024);
 
     //分离内存
     mem->memdt((void*)list);
